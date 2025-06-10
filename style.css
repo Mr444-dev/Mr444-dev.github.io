@@ -1,7 +1,6 @@
 /* --- Global & Fonts --- */
 :root {
     --bg-color: #121212;
-    --surface-color: rgba(30, 30, 30, 0.7);
     --primary-color: #03DAC6; /* Cyan */
     --secondary-color: #BB86FC; /* Purple */
     --text-color: #E0E0E0;
@@ -9,207 +8,252 @@
     --font-main: 'Poppins', sans-serif;
     --font-mono: 'Fira Code', monospace;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
 body {
     font-family: var(--font-main);
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.7;
+    padding-top: 80px; /* Odsunięcie dla stałej nawigacji */
 }
-.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-h1, h2, h3 { font-weight: 600; color: white; }
-h2 { font-size: 2.5rem; margin-bottom: 40px; text-align: center; }
+.container { 
+    max-width: 1100px; 
+    margin: 0 auto; 
+    padding: 0 20px; 
+}
+h1, h2, h3 { 
+    font-weight: 600; 
+    color: white; 
+}
+h2 { 
+    font-size: 2.5rem; 
+    margin-bottom: 40px; 
+    text-align: center; 
+}
 
 /* --- Particles Background --- */
-#particles-js {
+#particles-js { 
+    position: fixed; 
+    width: 100%; 
+    height: 100%; 
+    top: 0; 
+    left: 0; 
+    z-index: -1; 
+}
+.content { 
+    position: relative; 
+    z-index: 1; 
+}
+
+/* --- Nawigacja --- */
+nav {
     position: fixed;
-    width: 100%;
-    height: 100%;
     top: 0;
     left: 0;
-    z-index: -1;
+    width: 100%;
+    background: rgba(30, 30, 30, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1000;
 }
-.content { position: relative; z-index: 1; }
+.nav-container { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    height: 80px; 
+}
+.logo { 
+    font-family: var(--font-mono); 
+    font-size: 1.5rem; 
+    font-weight: bold; 
+    color: var(--primary-color); 
+}
+.nav-links { 
+    list-style: none; 
+    display: flex; 
+    gap: 25px; 
+}
+.nav-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10px 0;
+    position: relative;
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+.nav-link:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary-color);
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+    box-shadow: 0 0 10px var(--primary-color);
+}
+.nav-link:hover, .nav-link.active { 
+    color: white; 
+}
+.nav-link:hover:after, .nav-link.active:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* --- Sekcje (Pages) --- */
+.page-section {
+    display: none;
+    padding: 60px 0;
+    animation: fadeIn 0.5s ease-in-out;
+}
+.page-section.active { 
+    display: block; 
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
 /* --- Hero Section --- */
-.hero {
-    min-height: 80vh;
+.hero { 
+    min-height: calc(90vh - 80px); 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center; 
+}
+.hero h1 { 
+    font-size: 4rem; 
+}
+.hero p { 
+    font-size: 1.5rem; 
+}
+.typing-effect { 
+    color: var(--primary-color); 
+    font-weight: bold; 
+}
+
+/* --- Game Section --- */
+.game-container { 
+    text-align: center; 
+}
+#game-board {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    margin: 20px auto;
+    background-color: #000;
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 0 20px var(--primary-color), inset 0 0 15px rgba(3, 218, 198, 0.5);
+    border-radius: 8px;
+}
+#snake-canvas { 
+    background-color: #111;
+    border-radius: 5px;
+}
+#game-start-overlay, #game-over-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(18, 18, 18, 0.9);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    padding: 20px;
+    display: none; /* Ukryte domyślnie */
+    animation: fadeIn 0.3s;
 }
-.hero h1 { font-size: 4rem; margin-bottom: 10px; }
-.hero p { font-size: 1.5rem; color: var(--text-color-secondary); }
-.typing-effect { color: var(--primary-color); font-weight: bold; }
-.social-links { margin-top: 30px; }
-.social-links a {
-    color: var(--text-color);
-    font-size: 1.8rem;
-    margin: 0 15px;
-    transition: color 0.3s ease, transform 0.3s ease;
+#game-start-overlay.visible, #game-over-overlay.visible { 
+    display: flex; 
 }
-.social-links a:hover {
+#score-display { 
+    margin-top: 20px; 
+    font-size: 1.5rem; 
+    font-family: var(--font-mono); 
     color: var(--primary-color);
-    transform: translateY(-5px);
+    text-shadow: 0 0 5px var(--primary-color);
 }
 
-/* --- Glassmorphism Sections --- */
-section {
-    padding: 80px 0;
-    margin-bottom: 40px;
-    background: var(--surface-color);
-    border-radius: 16px;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* --- Project Cards --- */
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
-}
-.project-card {
-    background: rgba(40, 40, 40, 0.8);
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-.project-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 15px var(--primary-color);
-}
-.project-card img { width: 100%; display: block; }
-.card-content { padding: 25px; }
-.card-content h3 { color: var(--primary-color); margin-bottom: 10px; }
-.card-links { margin-top: 20px; display: flex; gap: 15px; }
-
-/* --- Skills --- */
-.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-.skill-category {
-    background: rgba(40, 40, 40, 0.8);
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-}
-.skill-category h3 { margin-bottom: 15px; color: var(--secondary-color); }
-.tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
-.tags span {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 5px 12px;
-    border-radius: 15px;
-    font-size: 0.9rem;
-}
-
-/* --- Buttons --- */
-.button, .button-secondary {
+/* --- Inne komponenty (przyciski, karty) --- */
+.button {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 12px 25px;
+    margin-top: 20px;
     text-decoration: none;
     border-radius: 5px;
     font-weight: 600;
-    transition: all 0.3s ease;
-}
-.button {
     background-color: var(--primary-color);
     color: var(--text-color-dark);
-}
-.button:hover {
-    background-color: white;
-    box-shadow: 0 0 10px var(--primary-color);
-}
-.button-secondary {
-    background: transparent;
-    border: 1px solid var(--primary-color);
-    color: var(--primary-color);
-}
-.button-secondary:hover {
-    background: var(--primary-color);
-    color: var(--text-color-dark);
-}
-
-/* --- Terminal & Glitch Effect --- */
-#terminal-toggle {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: var(--primary-color);
-    color: var(--text-color-dark);
-    padding: 10px 15px;
-    font-family: var(--font-mono);
-    cursor: pointer;
-    z-index: 1000;
-    border-radius: 5px;
-    font-weight: bold;
-}
-.glitch { animation: glitch 1.5s linear infinite; }
-@keyframes glitch{
-  2%,64%{ transform: translate(2px,0) skew(0deg); }
-  4%,60%{ transform: translate(-2px,0) skew(0deg); }
-  62%{ transform: translate(0,0) skew(5deg); }
-}
-.glitch:before, .glitch:after{
-  content: attr(data-text);
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: var(--primary-color);
-  overflow: hidden;
-}
-.glitch:before{ left: 2px; text-shadow: -2px 0 #BB86FC; animation: glitch-anim-1 2s linear infinite reverse; }
-.glitch:after{ left: -2px; text-shadow: -2px 0 #03DAC6, 2px 2px #BB86FC; animation: glitch-anim-2 2s linear infinite reverse; }
-@keyframes glitch-anim-1{ 0%,100%{ clip-path: inset(48% 0 48% 0); } 50%{ clip-path: inset(2% 0 92% 0); } }
-@keyframes glitch-anim-2{ 0%,100%{ clip-path: inset(93% 0 1% 0); } 50%{ clip-path: inset(78% 0 18% 0); } }
-
-#terminal {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 600px;
-    max-width: 90vw;
-    height: 400px;
-    background: rgba(20, 20, 20, 0.9);
-    border: 1px solid #444;
-    border-radius: 8px;
-    z-index: 999;
-    display: flex;
-    flex-direction: column;
-    font-family: var(--font-mono);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    transform: scale(0.5) translateY(100px);
-    opacity: 0;
-}
-#terminal:not(.hidden) { transform: scale(1) translateY(0); opacity: 1; }
-.terminal-header { background: #333; padding: 5px 10px; border-top-left-radius: 8px; border-top-right-radius: 8px; display: flex; justify-content: space-between; align-items: center; }
-.terminal-buttons { color: white; cursor: pointer; }
-.terminal-body { flex-grow: 1; padding: 10px; overflow-y: auto; }
-.terminal-body p { margin-bottom: 5px; color: #0f0; }
-.terminal-body .command { color: #ccc; }
-.terminal-body .error { color: #f00; }
-.terminal-prompt { display: flex; padding: 5px 10px; }
-#terminal-input {
-    flex-grow: 1;
-    background: transparent;
+    transition: all 0.3s ease;
     border: none;
-    color: #0f0;
-    font-family: var(--font-mono);
+    cursor: pointer;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
-#terminal-input:focus { outline: none; }
-.cursor { display: inline-block; background-color: #0f0; width: 8px; height: 1.2em; animation: blink 1s step-end infinite; }
-@keyframes blink { 50% { background-color: transparent; } }
-
-/* --- Animacje na Scroll & Responsywność --- */
-.reveal { opacity: 0; transform: translateY(50px); transition: opacity 0.8s ease, transform 0.8s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.hidden-transform { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
-.hero.visible .hidden-transform { opacity: 1; transform: translateY(0); }
-footer { text-align: center; padding: 30px; margin-top: 40px; color: #666; }
+.button:hover { 
+    background-color: white; 
+    box-shadow: 0 0 15px var(--primary-color); 
+    transform: translateY(-3px); 
+}
+.projects-grid, .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+.project-card, .skill-category {
+    background: rgba(30, 30, 30, 0.8);
+    backdrop-filter: blur(5px);
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.project-card:hover, .skill-category:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+.project-card h3, .skill-category h3 {
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+.tags { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 8px; 
+    margin-top: 15px; 
+}
+.tags span { 
+    background-color: rgba(255, 255, 255, 0.1); 
+    padding: 5px 12px; 
+    border-radius: 15px; 
+}
+/* --- Responsive Design --- */
 @media (max-width: 768px) {
+    body { padding-top: 60px; }
+    .nav-container { height: 60px; }
+    .nav-links {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: rgba(30, 30, 30, 0.95);
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        gap: 0;
+        transform: translateY(-150%);
+        transition: transform 0.3s ease-in-out;
+    }
+    /* Potrzebny byłby JS do obsługi menu mobilnego, na razie uproszczone */
+    
     .hero h1 { font-size: 2.5rem; }
-    .hero p { font-size: 1.2rem; }
+    #game-board { width: 90vw; height: 90vw; }
 }
