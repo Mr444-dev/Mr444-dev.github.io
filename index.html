@@ -3,103 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Michał Rusinek | Game Developer Portfolio</title>
+    <title>Michał Rusinek | Game Developer Portfolio [v2.0]</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- Ikony -->
 </head>
 <body>
+    <div id="particles-js"></div>
 
-    <header class="hero">
-        <div class="container">
-            <h1 class="fade-in">Cześć, jestem Michał Rusinek 👋</h1>
-            <p class="tagline fade-in">Unity Developer | Indie Game Developer | Mobile</p>
-        </div>
-    </header>
+    <div id="terminal-toggle" class="glitch" data-text="[cmd_]">
+        [cmd_]
+    </div>
 
-    <main>
-        <section id="about" class="container content-section hidden">
-            <h2>🚀 O Mnie</h2>
-            <p><strong>Pasja:</strong> Jestem Game Developerem z pasją do ożywiania interaktywnych doświadczeń we wszystkich moich grach.</p>
-            <p><strong>Skupienie:</strong> Głęboko interesuję się Unity, tworzeniem na platformy mobilne i optymalizacją wydajności. Moim celem jest tworzenie angażujących i dopracowanych gier, łącząc implementację techniczną z wymaganiami game designu.</p>
-            <p><strong>Aktualnie pracuję nad:</strong> Rozwijaniem narzędzi proceduralnego AI dla przeciwników w mojej nadchodzącej grze mobilnej.</p>
-            <p><strong>Czego się uczę:</strong> Zaawansowanych wzorców C# w architekturze gier, programowania multiplayer (Netcode) oraz technik profilowania i optymalizacji w Unity.</p>
-            <p><strong>Chętnie współpracuję przy:</strong> Game jamach (zwłaszcza w Unity), narzędziach open-source dla gamedevu lub ciekawych projektach indie wymagających wsparcia w C# / C++.</p>
-            <p><strong>Szukam pomocy z:</strong> Zawsze chętny do nauki! Obecnie zagłębiam się w zaawansowane algorytmy AI, optymalizację wydajności i strukturę poziomów.</p>
-            <p><strong>Zapytaj mnie o:</strong> Moje mocne strony to skrypty w C# (Unity), kontrola wersji z Git w projektach zespołowych oraz implementacja kluczowych mechanik rozgrywki.</p>
-            <p><strong>Ciekawostka:</strong> Moim ulubionym wyzwaniem w projektowaniu gier jest tworzenie satysfakcjonujących pętli feedbacku dla gracza.</p>
-        </section>
-
-        <section id="skills" class="container content-section hidden">
-            <h2>🛠️ Główne Umiejętności i Technologie</h2>
-            
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Języki Programowania</h3>
-                    <ul>
-                        <li>C# (Biegły)</li>
-                        <li>C++ (Średniozaawansowany)</li>
-                        <li>Python</li>
-                    </ul>
-                </div>
-
-                <div class="skill-category">
-                    <h3>Silniki Gier</h3>
-                    <ul>
-                        <li>Unity (Biegły: C#, URP, DOTS/ECS)</li>
-                    </ul>
-                </div>
-
-                <div class="skill-category">
-                    <h3>Kluczowe Koncepty Game Dev</h3>
-                    <ul>
-                        <li>Programowanie systemów rozgrywki</li>
-                        <li>AI (Drzewa behawioralne, Maszyny stanów)</li>
-                        <li>Fizyka gier (Raycasting, Rigidbodies)</li>
-                        <li>Podstawy grafiki (Rendering Pipelines)</li>
-                        <li>Podstawy sieci (Client-Server, Replikacja)</li>
-                        <li>Profilowanie i Optymalizacja</li>
-                        <li>Kontrola wersji (Git, GitHub Flow)</li>
-                        <li>Tworzenie narzędzi</li>
-                    </ul>
-                </div>
-
-                 <div class="skill-category">
-                    <h3>Oprogramowanie i Narzędzia</h3>
-                    <ul>
-                        <li>Visual Studio</li>
-                        <li>Rider</li>
-                        <li>Git</li>
-                        <li>CMake</li>
-                        <li>Jira</li>
-                        <li>Blender</li>
-                    </ul>
-                </div>
-
-                 <div class="skill-category">
-                    <h3>Platformy</h3>
-                    <ul>
-                        <li>PC (Windows)</li>
-                        <li>Mobile (Android)</li>
-                    </ul>
-                </div>
+    <div id="terminal" class="hidden">
+        <div class="terminal-header">
+            <div class="terminal-title">C:\WINDOWS\system32\cmd.exe</div>
+            <div class="terminal-buttons">
+                <span class="terminal-btn" id="terminal-close">×</span>
             </div>
-        </section>
-
-        <section id="contact" class="container content-section hidden">
-            <h2>📫 Skontaktuj się ze mną</h2>
-            <p>Jeśli masz pytania lub chcesz nawiązać współpracę, napisz do mnie!</p>
-            <a href="mailto:rusineczek1@gmail.com" class="button">rusineczek1@gmail.com</a>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>© <span id="year"></span> Michał Rusinek. Wszelkie prawa zastrzeżone.</p>
         </div>
-    </footer>
+        <div class="terminal-body" id="terminal-output">
+            <p>Microsoft Windows [Version 10.0.19042.1288]</p>
+            <p>(c) Microsoft Corporation. All rights reserved.</p>
+            <p>Wpisz 'help' aby zobaczyć listę komend.</p>
+        </div>
+        <div class="terminal-prompt">
+            <span class="prompt-text">C:\Users\Guest></span>
+            <input type="text" id="terminal-input" autocomplete="off" autofocus>
+        </div>
+    </div>
 
-    <script src="animations.js"></script>
+    <div class="content">
+        <header class="hero">
+            <h1 class="hidden-transform">Michał Rusinek</h1>
+            <p class="hidden-transform">Jestem <span class="typing-effect"></span></p>
+            <div class="social-links hidden-transform">
+                <a href="mailto:rusineczek1@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                <!-- Dodaj więcej linków np. do GitHuba, LinkedIn -->
+            </div>
+        </header>
+
+        <main>
+            <section id="about" class="container reveal">
+                <h2>🚀 O Mnie</h2>
+                <p>Pasjonat ożywiania interaktywnych doświadczeń. Głęboko interesuję się Unity, platformami mobilnymi i optymalizacją wydajności. Moim celem jest tworzenie angażujących, dopracowanych gier, łącząc implementację techniczną z wymaganiami game designu.</p>
+            </section>
+
+            <section id="projects" class="container reveal">
+                <h2>🕹️ Wybrane Projekty</h2>
+                <div class="projects-grid">
+                    <article class="project-card">
+                        <img src="https://via.placeholder.com/400x225/BB86FC/121212?text=Projekt+Alpha" alt="Zrzut ekranu projektu">
+                        <div class="card-content">
+                            <h3>Proceduralne AI</h3>
+                            <p>Narzędzia proceduralnego AI dla przeciwników w mojej nadchodzącej grze mobilnej.</p>
+                            <div class="tags">
+                                <span>Unity</span><span>C#</span><span>AI</span>
+                            </div>
+                            <div class="card-links">
+                                <a href="#" class="button">Live Demo</a>
+                                <a href="#" class="button-secondary">GitHub</a>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- Dodaj więcej kart projektów -->
+                </div>
+            </section>
+
+            <section id="skills" class="container reveal">
+                <h2>🛠️ Umiejętności</h2>
+                <div class="skills-grid">
+                    <div class="skill-category"><h3>Języki</h3><div class="tags"><span>C#</span><span>C++</span><span>Python</span></div></div>
+                    <div class="skill-category"><h3>Silniki</h3><div class="tags"><span>Unity</span><span>URP</span><span>DOTS/ECS</span></div></div>
+                    <div class="skill-category"><h3>Koncepty</h3><div class="tags"><span>Gameplay Systems</span><span>AI</span><span>Fizyka</span><span>Grafika</span><span>Sieci</span><span>Optymalizacja</span></div></div>
+                    <div class="skill-category"><h3>Narzędzia</h3><div class="tags"><span>Visual Studio</span><span>Rider</span><span>Git</span><span>Blender</span><span>Jira</span></div></div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>© <span id="year"></span> Michał Rusinek. Stworzone z pasją do gier i kodu.</p>
+        </footer>
+    </div>
+    
+    <script src="particles.js"></script>
+    <script src="app.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
