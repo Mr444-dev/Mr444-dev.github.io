@@ -1,0 +1,174 @@
+/* --- Globalne Ustawienia i Kolory --- */
+:root {
+    --bg-color: #121212; /* Bardzo ciemny szary, prawie czarny */
+    --surface-color: #1E1E1E; /* Ciemny szary dla kart i tła sekcji */
+    --primary-color: #BB86FC; /* Fioletowy akcent */
+    --secondary-color: #03DAC6; /* Turkusowy akcent */
+    --text-color: #E0E0E0; /* Jasnoszary dla tekstu */
+    --text-color-secondary: #A0A0A0; /* Ciemniejszy szary dla mniej ważnych tekstów */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.7;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3 {
+    font-weight: 600;
+    color: white;
+}
+
+h2 {
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+h3 {
+    font-size: 1.4rem;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+/* --- Sekcje Główne --- */
+.hero {
+    background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 1)), url('https://source.unsplash.com/random/1600x900/?game,code,abstract') no-repeat center center/cover;
+    padding: 100px 0;
+    text-align: center;
+    border-bottom: 4px solid var(--primary-color);
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.hero .tagline {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: var(--text-color-secondary);
+}
+
+.content-section {
+    padding: 60px 0;
+}
+
+#about p {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+#about strong {
+    color: var(--secondary-color);
+}
+
+/* --- Siatka Umiejętności --- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.skill-category {
+    background-color: var(--surface-color);
+    padding: 25px;
+    border-radius: 8px;
+    border-left: 4px solid var(--secondary-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-category:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+.skill-category ul {
+    list-style: none;
+    padding: 0;
+}
+
+.skill-category li {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 8px 12px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+    display: inline-block;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.skill-category li:hover {
+    background-color: var(--primary-color);
+    color: #121212;
+    font-weight: 600;
+    transform: scale(1.05);
+}
+
+/* --- Kontakt i Stopka --- */
+#contact {
+    text-align: center;
+}
+
+.button {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: #121212;
+    padding: 12px 30px;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.button:hover {
+    background-color: #a966fa;
+    transform: translateY(-3px);
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+    background-color: var(--surface-color);
+    color: var(--text-color-secondary);
+}
+
+
+/* --- Animacje na Scroll --- */
+.hidden {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in {
+    animation: fadeInAnimation 1s ease-in forwards;
+}
+
+@keyframes fadeInAnimation {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
