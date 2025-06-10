@@ -3,93 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Michał Rusinek | Game Developer Portfolio [v2.0]</title>
+    <title>Michał Rusinek | Interaktywne Portfolio Game Deva</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- Ikony -->
 </head>
 <body>
     <div id="particles-js"></div>
 
-    <div id="terminal-toggle" class="glitch" data-text="[cmd_]">
-        [cmd_]
-    </div>
-
-    <div id="terminal" class="hidden">
-        <div class="terminal-header">
-            <div class="terminal-title">C:\WINDOWS\system32\cmd.exe</div>
-            <div class="terminal-buttons">
-                <span class="terminal-btn" id="terminal-close">×</span>
-            </div>
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">MR_</div>
+            <ul class="nav-links">
+                <li><a href="#" class="nav-link active" data-target="home">Start</a></li>
+                <li><a href="#" class="nav-link" data-target="about">O Mnie</a></li>
+                <li><a href="#" class="nav-link" data-target="projects">Projekty</a></li>
+                <li><a href="#" class="nav-link" data-target="skills">Umiejętności</a></li>
+                <li><a href="#" class="nav-link" data-target="game-section">Zagraj w Grę</a></li>
+            </ul>
         </div>
-        <div class="terminal-body" id="terminal-output">
-            <p>Microsoft Windows [Version 10.0.19042.1288]</p>
-            <p>(c) Microsoft Corporation. All rights reserved.</p>
-            <p>Wpisz 'help' aby zobaczyć listę komend.</p>
-        </div>
-        <div class="terminal-prompt">
-            <span class="prompt-text">C:\Users\Guest></span>
-            <input type="text" id="terminal-input" autocomplete="off" autofocus>
-        </div>
-    </div>
+    </nav>
 
     <div class="content">
-        <header class="hero">
-            <h1 class="hidden-transform">Michał Rusinek</h1>
-            <p class="hidden-transform">Jestem <span class="typing-effect"></span></p>
-            <div class="social-links hidden-transform">
-                <a href="mailto:rusineczek1@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                <!-- Dodaj więcej linków np. do GitHuba, LinkedIn -->
-            </div>
-        </header>
+        <!-- Sekcja HOME -->
+        <section id="home" class="page-section active">
+            <header class="hero">
+                <h1>Michał Rusinek</h1>
+                <p>Jestem <span class="typing-effect"></span></p>
+                <a href="mailto:rusineczek1@gmail.com" class="button">Skontaktuj się</a>
+            </header>
+        </section>
 
-        <main>
-            <section id="about" class="container reveal">
+        <!-- Sekcja ABOUT -->
+        <section id="about" class="page-section">
+            <div class="container">
                 <h2>🚀 O Mnie</h2>
                 <p>Pasjonat ożywiania interaktywnych doświadczeń. Głęboko interesuję się Unity, platformami mobilnymi i optymalizacją wydajności. Moim celem jest tworzenie angażujących, dopracowanych gier, łącząc implementację techniczną z wymaganiami game designu.</p>
-            </section>
+            </div>
+        </section>
 
-            <section id="projects" class="container reveal">
+        <!-- Sekcja PROJECTS -->
+        <section id="projects" class="page-section">
+             <div class="container">
                 <h2>🕹️ Wybrane Projekty</h2>
                 <div class="projects-grid">
                     <article class="project-card">
-                        <img src="https://via.placeholder.com/400x225/BB86FC/121212?text=Projekt+Alpha" alt="Zrzut ekranu projektu">
+                        <img src="https://via.placeholder.com/400x225/BB86FC/121212?text=Projekt+AI" alt="Projekt AI">
                         <div class="card-content">
                             <h3>Proceduralne AI</h3>
                             <p>Narzędzia proceduralnego AI dla przeciwników w mojej nadchodzącej grze mobilnej.</p>
-                            <div class="tags">
-                                <span>Unity</span><span>C#</span><span>AI</span>
-                            </div>
-                            <div class="card-links">
-                                <a href="#" class="button">Live Demo</a>
-                                <a href="#" class="button-secondary">GitHub</a>
-                            </div>
+                            <div class="tags"><span>Unity</span><span>C#</span><span>AI</span></div>
                         </div>
                     </article>
-                    <!-- Dodaj więcej kart projektów -->
+                    <!-- Dodaj więcej projektów -->
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <section id="skills" class="container reveal">
+        <!-- Sekcja SKILLS -->
+        <section id="skills" class="page-section">
+            <div class="container">
                 <h2>🛠️ Umiejętności</h2>
                 <div class="skills-grid">
                     <div class="skill-category"><h3>Języki</h3><div class="tags"><span>C#</span><span>C++</span><span>Python</span></div></div>
                     <div class="skill-category"><h3>Silniki</h3><div class="tags"><span>Unity</span><span>URP</span><span>DOTS/ECS</span></div></div>
-                    <div class="skill-category"><h3>Koncepty</h3><div class="tags"><span>Gameplay Systems</span><span>AI</span><span>Fizyka</span><span>Grafika</span><span>Sieci</span><span>Optymalizacja</span></div></div>
-                    <div class="skill-category"><h3>Narzędzia</h3><div class="tags"><span>Visual Studio</span><span>Rider</span><span>Git</span><span>Blender</span><span>Jira</span></div></div>
+                    <div class="skill-category"><h3>Koncepty</h3><div class="tags"><span>Gameplay</span><span>AI</span><span>Fizyka</span><span>Grafika</span><span>Sieci</span></div></div>
+                    <div class="skill-category"><h3>Narzędzia</h3><div class="tags"><span>VS</span><span>Rider</span><span>Git</span><span>Blender</span></div></div>
                 </div>
-            </section>
-        </main>
+            </div>
+        </section>
 
-        <footer>
-            <p>© <span id="year"></span> Michał Rusinek. Stworzone z pasją do gier i kodu.</p>
-        </footer>
+        <!-- Sekcja GAME -->
+        <section id="game-section" class="page-section">
+            <div class="container game-container">
+                <h2>🐍 Zagraj w Snake'a!</h2>
+                <div id="game-board">
+                    <div id="game-start-overlay" class="visible">
+                        <button id="start-game-btn" class="button">Zacznij Grę</button>
+                    </div>
+                    <canvas id="snake-canvas" width="400" height="400"></canvas>
+                    <div id="game-over-overlay">
+                        <h2>Game Over</h2>
+                        <p>Wynik: <span id="final-score">0</span></p>
+                        <button id="restart-game-btn" class="button">Zagraj Ponownie</button>
+                    </div>
+                </div>
+                <div id="score-display">Wynik: <span id="score">0</span></div>
+            </div>
+        </section>
     </div>
-    
-    <script src="particles.js"></script>
-    <script src="app.js"></script>
-    <script src="script.js"></script>
 </body>
 </html>
