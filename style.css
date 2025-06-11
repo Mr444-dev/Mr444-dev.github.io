@@ -1,259 +1,98 @@
-/* --- Global & Fonts --- */
-:root {
-    --bg-color: #121212;
-    --primary-color: #03DAC6; /* Cyan */
-    --secondary-color: #BB86FC; /* Purple */
-    --text-color: #E0E0E0;
-    --text-color-dark: #121212;
-    --font-main: 'Poppins', sans-serif;
-    --font-mono: 'Fira Code', monospace;
-}
-* { 
-    box-sizing: border-box; 
-    margin: 0; 
-    padding: 0; 
-}
-body {
-    font-family: var(--font-main);
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    line-height: 1.7;
-    padding-top: 80px; /* Odsunięcie dla stałej nawigacji */
-}
-.container { 
-    max-width: 1100px; 
-    margin: 0 auto; 
-    padding: 0 20px; 
-}
-h1, h2, h3 { 
-    font-weight: 600; 
-    color: white; 
-}
-h2 { 
-    font-size: 2.5rem; 
-    margin-bottom: 40px; 
-    text-align: center; 
-}
+document.addEventListener('DOMContentLoaded', function() {
 
-/* --- Particles Background --- */
-#particles-js { 
-    position: fixed; 
-    width: 100%; 
-    height: 100%; 
-    top: 0; 
-    left: 0; 
-    z-index: -1; 
-}
-.content { 
-    position: relative; 
-    z-index: 1; 
-}
+    // --- Dynamiczna data w stopce ---
+    const yearSpan = document.getElementById('year');
+    if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
-/* --- Nawigacja --- */
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(30, 30, 30, 0.7);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    z-index: 1000;
-}
-.nav-container { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    height: 80px; 
-}
-.logo { 
-    font-family: var(--font-mono); 
-    font-size: 1.5rem; 
-    font-weight: bold; 
-    color: var(--primary-color); 
-}
-.nav-links { 
-    list-style: none; 
-    display: flex; 
-    gap: 25px; 
-}
-.nav-link {
-    color: var(--text-color);
-    text-decoration: none;
-    font-weight: 600;
-    padding: 10px 0;
-    position: relative;
-    transition: color 0.3s ease;
-    cursor: pointer;
-}
-.nav-link:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background-color: var(--primary-color);
-    transform: scaleX(0);
-    transform-origin: bottom right;
-    transition: transform 0.3s ease;
-    box-shadow: 0 0 10px var(--primary-color);
-}
-.nav-link:hover, .nav-link.active { 
-    color: white; 
-}
-.nav-link:hover:after, .nav-link.active:after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
-}
+    // --- Animacja pisania ---
+    const typingElement = document.querySelector('.typing-effect');
+    const words = ["Unity Developerem", "Indie Game Developerem", "Fanem Optymalizacji", "Programistą C#"];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
 
-/* --- Sekcje (Pages) --- */
-.page-section {
-    display: none;
-    padding: 60px 0;
-    animation: fadeIn 0.5s ease-in-out;
-}
-.page-section.active { 
-    display: block; 
-}
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+    function type() {
+        const currentWord = words[wordIndex];
+        const currentChars = isDeleting 
+            ? currentWord.substring(0, charIndex--) 
+            : currentWord.substring(0, charIndex++);
+        
+        typingElement.textContent = currentChars;
 
-/* --- Hero Section --- */
-.hero { 
-    min-height: calc(90vh - 80px); 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
-    text-align: center; 
-}
-.hero h1 { 
-    font-size: 4rem; 
-}
-.hero p { 
-    font-size: 1.5rem; 
-}
-.typing-effect { 
-    color: var(--primary-color); 
-    font-weight: bold; 
-}
-
-/* --- Game Section --- */
-.game-container { 
-    text-align: center; 
-}
-#game-board {
-    position: relative;
-    width: 400px;
-    height: 400px;
-    margin: 20px auto;
-    background-color: #000;
-    border: 3px solid var(--primary-color);
-    box-shadow: 0 0 20px var(--primary-color), inset 0 0 15px rgba(3, 218, 198, 0.5);
-    border-radius: 8px;
-}
-#snake-canvas { 
-    background-color: #111;
-    border-radius: 5px;
-}
-#game-start-overlay, #game-over-overlay {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(18, 18, 18, 0.9);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    display: none; /* Ukryte domyślnie */
-    animation: fadeIn 0.3s;
-}
-#game-start-overlay.visible, #game-over-overlay.visible { 
-    display: flex; 
-}
-#score-display { 
-    margin-top: 20px; 
-    font-size: 1.5rem; 
-    font-family: var(--font-mono); 
-    color: var(--primary-color);
-    text-shadow: 0 0 5px var(--primary-color);
-}
-
-/* --- Inne komponenty (przyciski, karty) --- */
-.button {
-    display: inline-block;
-    padding: 12px 25px;
-    margin-top: 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: 600;
-    background-color: var(--primary-color);
-    color: var(--text-color-dark);
-    transition: all 0.3s ease;
-    border: none;
-    cursor: pointer;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-}
-.button:hover { 
-    background-color: white; 
-    box-shadow: 0 0 15px var(--primary-color); 
-    transform: translateY(-3px); 
-}
-.projects-grid, .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
-.project-card, .skill-category {
-    background: rgba(30, 30, 30, 0.8);
-    backdrop-filter: blur(5px);
-    padding: 25px;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.project-card:hover, .skill-category:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-}
-.project-card h3, .skill-category h3 {
-    color: var(--secondary-color);
-    margin-bottom: 15px;
-}
-.tags { 
-    display: flex; 
-    flex-wrap: wrap; 
-    gap: 8px; 
-    margin-top: 15px; 
-}
-.tags span { 
-    background-color: rgba(255, 255, 255, 0.1); 
-    padding: 5px 12px; 
-    border-radius: 15px; 
-}
-/* --- Responsive Design --- */
-@media (max-width: 768px) {
-    body { padding-top: 60px; }
-    .nav-container { height: 60px; }
-    .nav-links {
-        position: fixed;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        background: rgba(30, 30, 30, 0.95);
-        flex-direction: column;
-        align-items: center;
-        padding: 20px 0;
-        gap: 0;
-        transform: translateY(-150%);
-        transition: transform 0.3s ease-in-out;
+        if (!isDeleting && charIndex === currentWord.length) {
+            isDeleting = true;
+            setTimeout(type, 2000);
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            wordIndex = (wordIndex + 1) % words.length;
+            setTimeout(type, 500);
+        } else {
+            setTimeout(type, isDeleting ? 50 : 150);
+        }
     }
-    /* Potrzebny byłby JS do obsługi menu mobilnego, na razie uproszczone */
-    
-    .hero h1 { font-size: 2.5rem; }
-    #game-board { width: 90vw; height: 90vw; }
-}
+    type();
+
+    // --- Animacja na Scroll ---
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.classList.add('visible');
+                }, index * 100);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal, .hero').forEach(el => observer.observe(el));
+
+    // --- Logika Terminala ---
+    const terminal = document.getElementById('terminal');
+    const toggleButton = document.getElementById('terminal-toggle');
+    const closeButton = document.getElementById('terminal-close');
+    const output = document.getElementById('terminal-output');
+    const input = document.getElementById('terminal-input');
+
+    toggleButton.addEventListener('click', () => terminal.classList.toggle('hidden'));
+    closeButton.addEventListener('click', () => terminal.classList.add('hidden'));
+
+    input.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            const command = input.value.trim().toLowerCase();
+            const prompt = `<p><span class="command">C:\\Users\\Guest>${command}</span></p>`;
+            output.innerHTML += prompt;
+
+            handleCommand(command);
+
+            input.value = '';
+            output.scrollTop = output.scrollHeight;
+        }
+    });
+
+    function handleCommand(cmd) {
+        let response = '';
+        switch (cmd) {
+            case 'help':
+                response = `<p>Dostępne komendy: 'about', 'skills', 'projects', 'contact', 'clear'</p>`;
+                break;
+            case 'about':
+                response = `<p>Michał Rusinek - Game Developer z pasją do tworzenia gier. Główne technologie: Unity, C#, C++.</p>`;
+                break;
+            case 'skills':
+                response = `<p>C#, C++, Python, Unity, URP, DOTS/ECS, Gameplay Systems, AI, Fizyka, Git, Blender...</p>`;
+                break;
+
+            case 'projects':
+                 response = `<p>Aktualnie pracuję nad narzędziami proceduralnego AI. Więcej projektów znajdziesz na moim GitHubie (link wkrótce!).</p>`;
+                 break;
+            case 'contact':
+                response = `<p>Napisz do mnie: <a href="mailto:rusineczek1@gmail.com">rusineczek1@gmail.com</a></p>`;
+                break;
+            case 'clear':
+                output.innerHTML = '';
+                return;
+            default:
+                response = `<p class="error">Nieznana komenda: '${cmd}'. Wpisz 'help' po pomoc.</p>`;
+        }
+        output.innerHTML += response;
+    }
+});
