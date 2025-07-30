@@ -1,118 +1,1194 @@
 /* --- Global & Fonts --- */
 :root {
+    /* Dark mode (existing) */
     --bg-color: #121212;
-    --primary-color: #03DAC6; /* Cyan */
-    --secondary-color: #BB86FC; /* Purple */
+    --primary-color: #03DAC6;
+    --primary-color-rgb: 3, 218, 198;
+    --secondary-color: #BB86FC;
     --text-color: #E0E0E0;
-    --text-color-dark: #121212;
     --font-main: 'Poppins', sans-serif;
-    --font-mono: 'Fira Code', monospace;
+    --nav-bg-scrolled: rgba(30, 30, 30, 0.8);
+    --card-bg: rgba(30, 30, 30, 0.7);
+    --input-bg: #1e1e1e;
+    --button-text-on-primary: #121212;
+    --button-hover-bg: white;
+    --button-hover-text: var(--bg-color);
+    --heading-color: white;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --input-border-color: rgba(255, 255, 255, 0.2);
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --shadow-hover-color: rgba(0, 0, 0, 0.2); /* Re-evaluate if needed */
+    --snake-canvas-bg: #1a1a1a;
+    --game-overlay-bg: rgba(18, 18, 18, 0.9);
+    --bg-color-rgb: 18, 18, 18; /* Added for loader overlay */
+
+
+    /* Light mode variables */
+    --bg-color-light: #ECEFF1; /* Softer, slightly darker off-white */
+    --text-color-light: #263238; /* Slightly darker text for better contrast on new bg */
+    --nav-bg-scrolled-light: rgba(220, 223, 225, 0.85); /* Adjusted for new bg */
+    --card-bg-light: #F5F5F5; /* Softer, distinct off-white for cards */
+    --input-bg-light: #E8E8E8; /* Softer light gray for inputs */
+    --button-text-on-primary-light: #121212;
+    --button-hover-bg-light: #424242; /* Darker hover for buttons */
+    --button-hover-text-light: #F5F5F5;
+    --heading-color-light: #1A2327; /* Darker headings */
+    --border-color-light: rgba(0, 0, 0, 0.12); /* Slightly more visible border */
+    --input-border-color-light: rgba(0, 0, 0, 0.15);
+    --shadow-color-light: rgba(0, 0, 0, 0.06); /* Softer shadow */
+    --shadow-hover-color-light: rgba(0, 0, 0, 0.1);
+    --snake-canvas-bg-light: #E0E0E0; /* Slightly darker canvas bg */
+    --game-overlay-bg-light: rgba(224, 224, 224, 0.9); /* Less bright overlay */
+    --bg-color-light-rgb: 236, 239, 241; /* Updated for loader overlay to match new bg */
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-    font-family: var(--font-main);
-    background-color: var(--bg-color);
+
+/* Light Mode Styles */
+body.light-mode {
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+}
+
+body.light-mode nav.scrolled {
+    background: var(--nav-bg-scrolled-light);
+    border-bottom: 1px solid var(--border-color-light);
+}
+
+body.light-mode .logo {
+    /* color: var(--primary-color); /* Logo color can remain primary */
+}
+
+body.light-mode .nav-link {
+    color: var(--text-color-light);
+}
+
+body.light-mode .nav-link:hover,
+body.light-mode .nav-link.active {
+    color: var(--primary-color); /* Or a darker shade suitable for light mode */
+}
+/* nav-link::after background can remain primary */
+
+body.light-mode h1, body.light-mode h2, body.light-mode h3 {
+    color: var(--heading-color-light);
+}
+
+body.light-mode .hero h1 {
+    color: var(--heading-color-light); /* Ensure hero h1 is specifically targeted if needed */
+}
+
+body.light-mode .hero p {
+    color: var(--text-color-light);
+}
+
+body.light-mode .typing-effect {
+    /* color: var(--primary-color); /* Typing effect can remain primary */
+}
+
+body.light-mode .project-card,
+body.light-mode .skill-category,
+body.light-mode .contact-form,
+body.light-mode .contact-info {
+    background: var(--card-bg-light);
+    border: 1px solid var(--border-color-light);
+    box-shadow: 0 4px 15px var(--shadow-color-light);
+    color: var(--text-color-light);
+    opacity: 1; /* Ensure full opacity for light mode too */
+}
+
+body.light-mode .project-card img {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+body.light-mode .project-card:hover {
+    box-shadow: 0 8px 25px var(--shadow-hover-color-light);
+}
+
+body.light-mode .skill-category h3 {
+    /* color: var(--primary-color); /* Skill category titles can remain primary */
+}
+
+body.light-mode .contact-form input,
+body.light-mode .contact-form textarea {
+    background: var(--input-bg-light);
+    color: var(--text-color-light);
+    border: 1px solid var(--input-border-color-light);
+}
+
+body.light-mode .contact-form input:focus,
+body.light-mode .contact-form textarea:focus {
+    border-color: var(--primary-color); /* Focus color can remain primary */
+    box-shadow: 0 0 0 2px rgba(var(--primary-color-rgb), 0.4);
+}
+
+body.light-mode .contact-form button {
+    background: var(--primary-color);
+    color: var(--button-text-on-primary-light);
+}
+
+body.light-mode .contact-form button:hover {
+    background: var(--button-hover-bg-light);
+    color: var(--button-hover-text-light);
+}
+
+body.light-mode #snake-canvas {
+    border: 2px solid var(--primary-color);
+    background-color: var(--snake-canvas-bg-light);
+    box-shadow: 0 0 15px rgba(var(--primary-color-rgb), 0.2);
+}
+
+body.light-mode .game-info {
+    color: var(--text-color-light);
+}
+
+body.light-mode .game-info span {
+    /* color: var(--primary-color); /* Score color can remain primary */
+}
+
+body.light-mode .game-overlay {
+    background: var(--game-overlay-bg-light);
+}
+
+body.light-mode .game-overlay h2 {
+    /* color: var(--primary-color); /* Game titles can remain primary */
+}
+
+body.light-mode .game-btn {
+    background: var(--primary-color);
+    color: var(--button-text-on-primary-light);
+}
+
+body.light-mode .game-btn:hover {
+    background: var(--button-hover-bg-light);
+    color: var(--button-hover-text-light);
+}
+
+/* Theme Toggle Button in Nav (Old - can be removed or commented out if no longer used) */
+/*
+#theme-toggle {
+    background: transparent;
+    border: 1px solid var(--text-color);
     color: var(--text-color);
-    line-height: 1.7;
-    padding-top: 80px; 
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    margin-left: 15px;
+    transition: background 0.3s, color 0.3s, border-color 0.3s;
+    align-self: center;
 }
+
+body.light-mode #theme-toggle {
+    border-color: var(--text-color-light);
+    color: var(--text-color-light);
+}
+
+#theme-toggle:hover {
+    background: var(--text-color);
+    color: var(--bg-color);
+}
+
+body.light-mode #theme-toggle:hover {
+    background: var(--text-color-light);
+    color: var(--bg-color-light);
+}
+*/
+
+/* New Fixed Theme Toggle Button */
+.fixed-theme-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1001; /* Above particles and most content */
+    background-color: var(--card-bg);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    width: 42px; /* Adjusted size */
+    height: 42px; /* Adjusted size */
+    clip-path: polygon(50% 0%, 90% 25%, 100% 50%, 90% 75%, 50% 100%, 10% 75%, 0% 50%, 10% 25%); /* New gamey/crystal shape */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem; /* Re-added for emoji icon size */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, clip-path 0.3s ease, box-shadow 0.3s ease; /* Added box-shadow transition */
+    box-shadow: 0 2px 10px var(--shadow-color);
+    line-height: 1; /* Re-added for emoji icon centering */
+    padding: 0; /* Ensure no padding interferes with SVG */
+}
+
+.fixed-theme-button:hover {
+    background-color: var(--primary-color);
+    color: var(--button-text-on-primary);
+    transform: scale(1.15) rotate(15deg); /* Enhanced hover effect */
+    box-shadow: 0 4px 15px rgba(var(--primary-color-rgb), 0.4); /* Enhanced shadow on hover */
+}
+
+.fixed-theme-button:active {
+    transform: scale(1.05) rotate(5deg); /* Added active state */
+}
+
+
+body.light-mode .fixed-theme-button {
+    background-color: #000000; /* Changed to black background */
+    color: var(--primary-color); /* Icon color changed to primary for contrast */
+    border: 1px solid var(--primary-color); /* Border remains primary color */
+    box-shadow: 0 2px 10px var(--shadow-color-light);
+}
+
+body.light-mode .fixed-theme-button:hover {
+    background-color: var(--primary-color); /* Or a suitable hover bg for light mode */
+    color: var(--button-text-on-primary-light); /* Or a suitable hover text color for light mode */
+    transform: scale(1.15) rotate(15deg); /* Consistent enhanced hover */
+    box-shadow: 0 4px 15px rgba(var(--primary-color-rgb), 0.4);
+}
+
+body.light-mode .fixed-theme-button:active {
+    transform: scale(1.05) rotate(5deg); /* Consistent active state */
+}
+
+
+/* Adjust nav-links to align button if necessary */
+.nav-links {
+    align-items: center; /* Helps vertically align items if nav height allows */
+}
+
+@media (max-width: 768px) {
+    /* ... other responsive styles ... */
+    .fixed-theme-button {
+        width: 38px; /* Further reduced for smaller screens */
+        height: 38px; /* Further reduced for smaller screens */
+        font-size: 1.1rem; /* Adjusted for emoji */
+        /* clip-path remains the same, relative units handle scaling */
+        bottom: 15px;
+        right: 15px;
+    }
+}
+
+/* ZMIANA: Usunięto scroll-behavior; JS będzie zarządzał animacją przewijania */
+html { }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-main); background-color: var(--bg-color); color: var(--text-color); line-height: 1.7; }
 .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 h1, h2, h3 { font-weight: 600; color: white; }
 h2 { font-size: 2.5rem; margin-bottom: 40px; text-align: center; }
 
-/* --- Particles Background --- */
-#particles-js { position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: -1; }
-.content { position: relative; z-index: 1; }
+/* Prevent scrolling on specific pages */
+body.no-scroll {
+    overflow: hidden;
+}
 
-/* --- ZMIANA: Nawigacja z logiką chowania --- */
+/* --- Tło i Nawigacja --- */
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0; /* Should be 0, not -1 */
+    background-color: transparent; /* Ensure background is transparent */
+}
 nav {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000;
-    transition: transform 0.3s ease-in-out, background-color 0.3s ease; /* DODANA PŁYNNOŚĆ */
+    z-index: 1000; /* Already high, ensure it's above particles */
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+    display: flex; /* Added */
+    justify-content: space-between; /* Added */
+    align-items: center; /* Added */
+    padding: 0 40px 0 20px; /* Increased right padding to 40px */
+    height: 80px; /* Explicit height for alignment */
 }
+nav.scrolled { background: var(--nav-bg-scrolled); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color-light); }
+body.light-mode nav.scrolled { background: var(--nav-bg-scrolled-light); border-bottom: 1px solid var(--border-color-light); }
+nav.nav-hidden { transform: translateY(-100%); }
 
-/* NOWA REGUŁA: Styl nawigacji po przewinięciu */
-nav.scrolled {
-    background: rgba(30, 30, 30, 0.7);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+/* .nav-container no longer needs flex properties for positioning, it's a flex item of nav */
+.nav-container {
+    /* display: flex; justify-content: flex-end; align-items: center; */ /* Removed */
+    /* height: 80px; */ /* Height is on nav */
+    /* max-width: 1100px; margin: 0 auto; padding: 0 20px; */ /* Removed, nav handles padding */
 }
-
-/* NOWA REGUŁA: Stan ukrycia nawigacji */
-nav.nav-hidden {
-    transform: translateY(-100%);
-}
-
-.nav-container { display: flex; justify-content: space-between; align-items: center; height: 80px; }
-.logo { font-family: var(--font-mono); font-size: 1.5rem; font-weight: bold; color: var(--primary-color); }
-.nav-links { list-style: none; display: flex; gap: 25px; }
-.nav-link {
-    color: var(--text-color);
+.logo {
+    font-family: 'Fira Code', monospace;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    /* position: absolute; top: 50%; left: 20px; transform: translateY(-50%); */ /* Removed absolute positioning */
+    line-height: 1;
     text-decoration: none;
-    font-weight: 600;
-    padding: 10px 0;
-    position: relative;
-    transition: color 0.3s ease;
-    cursor: pointer;
+    /* padding: 0 20px; /* Removed, nav has padding */
 }
-.nav-link:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background-color: var(--primary-color);
-    transform: scaleX(0);
-    transform-origin: bottom right;
-    transition: transform 0.3s ease;
-    box-shadow: 0 0 10px var(--primary-color);
-}
-.nav-link:hover, .nav-link.active { color: white; }
-.nav-link:hover:after, .nav-link.active:after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
-}
-
-/* Reszta kodu CSS pozostaje taka sama jak w poprzedniej wersji */
-/* --- Sekcje (Pages) --- */
-.page-section { display: none; padding: 60px 0; animation: fadeIn 0.5s ease-in-out; }
-.page-section.active { display: block; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.nav-links { list-style: none; display: flex; gap: 25px; /* margin-left: auto; /* No longer needed */ }
+.nav-link { color: var(--text-color); text-decoration: none; font-size: 1rem; font-weight: 600; padding: 5px 0; position: relative; transition: color 0.3s ease, transform 0.2s ease; } /* Added transform transition */
+.nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 50%; transform: translateX(-50%); background-color: var(--primary-color); transition: width 0.3s ease; }
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+.nav-link:hover, .nav-link.active { color: white; transform: translateY(-2px); } /* Added translateY on hover/active */
 
 /* --- Hero Section --- */
-.hero { min-height: calc(90vh - 80px); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-.hero h1 { font-size: 4rem; }
-.hero p { font-size: 1.5rem; }
-.typing-effect { color: var(--primary-color); font-weight: bold; }
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    padding: 300px 20px 0 20px;
+    position: relative;
+    z-index: 1;
+    pointer-events: none;
+}
 
-/* --- Game Section --- */
-.game-container { text-align: center; }
-#game-board { position: relative; width: 400px; height: 400px; margin: 20px auto; background-color: #000; border: 3px solid var(--primary-color); box-shadow: 0 0 20px var(--primary-color), inset 0 0 15px rgba(3, 218, 198, 0.5); border-radius: 8px; }
-#snake-canvas { background-color: #111; border-radius: 5px; }
-#game-start-overlay, #game-over-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(18, 18, 18, 0.9); display: flex; flex-direction: column; justify-content: center; align-items: center; display: none; animation: fadeIn 0.3s; }
-#game-start-overlay.visible, #game-over-overlay.visible { display: flex; }
-#score-display { margin-top: 20px; font-size: 1.5rem; font-family: var(--font-mono); color: var(--primary-color); text-shadow: 0 0 5px var(--primary-color); }
+/* Ensure the direct child div (containing h1 and p) behaves for centering */
+.hero > div {
+    width: 100%; /* Make the div take full available width within the padded hero */
+    text-align: center; /* Explicitly center text within this div */
+}
 
-/* --- Inne komponenty (przyciski, karty) --- */
-.button { display: inline-block; padding: 12px 25px; margin-top: 20px; text-decoration: none; border-radius: 5px; font-weight: 600; background-color: var(--primary-color); color: var(--text-color-dark); transition: all 0.3s ease; border: none; cursor: pointer; text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
-.button:hover { background-color: white; box-shadow: 0 0 15px var(--primary-color); transform: translateY(-3px); }
-.projects-grid, .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-.project-card, .skill-category { background: rgba(30, 30, 30, 0.8); backdrop-filter: blur(5px); padding: 25px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; }
-.project-card:hover, .skill-category:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
-.project-card h3, .skill-category h3 { color: var(--secondary-color); margin-bottom: 15px; }
-.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
-.tags span { background-color: rgba(255, 255, 255, 0.1); padding: 5px 12px; border-radius: 15px; }
+.hero h1 {
+    font-size: 4rem; /* Responsive font size */
+    margin-bottom: 10px;
+    color: white;
+    font-family: 'Fira Code', monospace;
+}
+.hero p {
+    font-size: 1.8rem; /* Responsive font size */
+    color: var(--text-color);
+    margin-bottom: 30px;
+}
+.typing-effect {
+    color: var(--primary-color);
+    font-weight: bold;
+}
 
-/* --- Responsive Design --- */
+/* --- Reveal Animation --- */
+/* Removed .reveal and .reveal.visible styles as AOS will handle this */
+
+/* --- Main Content Area --- */
+main {
+    padding-top: 80px; /* Adjust if nav height changes, to prevent overlap */
+    position: relative; /* Add position context for z-index */
+    z-index: 1; /* Ensure main content is above particles */
+}
+
+/* --- Projects Page --- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 40px 20px;
+}
+
+.project-card {
+    background: rgba(30, 30, 30, 0.7);
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    object-position: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover img {
+    transform: scale(1.03);
+    box-shadow: 0 6px 15px rgba(var(--primary-color-rgb), 0.3);
+}
+
+.project-card .card-content h3 { /* Added to center project card titles */
+    text-align: center;
+    margin-bottom: 15px; /* Ensure some space below title */
+}
+
+.project-card:hover {
+    transform: translateY(-8px) scale(1.02); /* Enhanced hover for card */
+    box-shadow: 0 12px 40px rgba(var(--primary-color-rgb), 0.2); /* More prominent shadow on hover */
+}
+
+/* --- Skills Page --- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjusted minmax for potentially larger cards */
+    gap: 30px;
+    padding: 40px 20px;
+}
+
+.skill-category {
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 30px 25px; /* Increased padding */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-category::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: var(--primary-color);
+    transition: width 0.3s ease; /* Added transition for the accent bar */
+}
+
+.skill-category:hover {
+    transform: translateY(-10px) scale(1.03) rotate(-1deg); /* Enhanced hover: more lift, slight scale, and rotation */
+    box-shadow: 0 18px 40px rgba(var(--primary-color-rgb),0.2); /* More prominent shadow with primary color tint */
+}
+
+.skill-category:hover::before {
+    width: 10px; /* Accent bar expands more on hover */
+    background: var(--secondary-color); /* Change accent bar color on hover */
+}
+
+/* --- Skills Page Improvements --- */
+/* .skills-grid is already defined above */
+
+.skill-category h3 {
+    margin-bottom: 25px; /* Increased margin */
+    padding-bottom: 15px; /* Increased padding */
+    border-bottom: 1px solid var(--border-color);
+    font-size: 1.7rem; /* Increased font size */
+    display: flex; /* For icon alignment */
+    align-items: center; /* For icon alignment */
+    justify-content: center; /* Center title and icon */
+    text-align: center; /* Ensure text is centered */
+}
+
+.skill-category h3 i {
+    margin-right: 12px; /* Space between icon and text */
+    color: var(--primary-color); /* Icon color */
+    font-size: 1.6rem; /* Icon size relative to h3 */
+    transition: transform 0.3s ease; /* Add transition for icon */
+}
+
+.skill-category:hover h3 i {
+    transform: scale(1.1) rotate(5deg); /* Animate icon on parent hover */
+}
+
+
+.skill-category ul {
+    list-style-type: none;
+    padding-left: 5px;
+}
+
+.skill-category li {
+    position: relative;
+    padding: 10px 0 10px 30px; /* Adjusted padding */
+    line-height: 1.6; /* Adjusted line-height */
+    font-size: 1.05rem; /* Slightly increased font size */
+    transition: color 0.3s ease, transform 0.3s ease; /* Add transition for li */
+}
+
+.skill-category li:hover {
+    color: var(--primary-color); /* Change text color on hover */
+    transform: translateX(5px); /* Slight shift to the right on hover */
+}
+
+.skill-category li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    top: 10px; /* Adjust for new padding */
+    color: var(--primary-color);
+    font-size: 1.3rem; /* Adjusted size */
+    transition: color 0.3s ease, transform 0.3s ease; /* Add transition for pseudo-element */
+}
+
+.skill-category li:hover::before {
+    color: var(--secondary-color); /* Change pseudo-element color on hover */
+    transform: scale(1.2) rotate(10deg); /* Animate pseudo-element on hover */
+}
+
+/* Light mode skills styles */
+body.light-mode .skill-category {
+    background: var(--card-bg-light);
+    border-color: var(--border-color-light);
+}
+
+body.light-mode .skill-category h3 {
+    border-bottom-color: var(--border-color-light);
+}
+
+body.light-mode .skill-category h3 i { /* Ensure icon color consistency in light mode if needed */
+    color: var(--primary-color);
+}
+
+body.light-mode .skill-category:hover {
+    box-shadow: 0 18px 40px rgba(var(--primary-color-rgb), 0.15); /* Adjusted shadow for light mode */
+}
+
+body.light-mode .skill-category:hover::before {
+    background: var(--secondary-color); /* Consistent accent bar hover color */
+}
+
+
+body.light-mode .skill-category h3 {
+    margin-bottom: 25px; /* Increased margin */
+    padding-bottom: 15px; /* Increased padding */
+    border-bottom: 1px solid var(--border-color-light);
+    font-size: 1.7rem; /* Increased font size */
+    display: flex; /* For icon alignment */
+    align-items: center; /* For icon alignment */
+    justify-content: center; /* Center title and icon */
+    text-align: center; /* Ensure text is centered */
+}
+
+body.light-mode .skill-category h3 i { /* Ensure icon color consistency in light mode if needed */
+    color: var(--primary-color);
+}
+
+body.light-mode .skill-category li:hover {
+    color: var(--primary-color); /* Consistent text hover color */
+}
+
+body.light-mode .skill-category li:hover::before {
+    color: var(--secondary-color); /* Consistent pseudo-element hover color */
+}
+
+
+/* --- Contact Page Improvements --- */
+.contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.contact-info {
+    flex: 1.5;
+    min-width: 340px;
+    background: #2c2f33; /* A more distinct dark gray */
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15); /* Slightly more pronounced shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--primary-color);
+    color: var(--text-color);
+    opacity: 1; /* Ensure full opacity */
+    pointer-events: none; /* Allow mouse events to pass through to particle canvas */
+}
+
+.contact-info > * { /* Make direct children interactive again */
+    pointer-events: auto;
+}
+
+.contact-method {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    pointer-events: auto; /* Ensure methods are interactive if they contain links or need text selection */
+}
+
+.contact-method i { /* Style for icons within contact-method */
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    width: 40px; /* Ensure consistent width for alignment */
+    text-align: center;
+    margin-right: 10px;
+    pointer-events: auto; /* If icons are part of a link or need to be interactive */
+}
+
+
+.contact-method p, .contact-method i { /* This rule was .contact-method p, .contact-method i */
+    pointer-events: auto; /* Specifically for text selection or if icons become links */
+}
+
+.social-links {
+    margin-top: 20px;
+    pointer-events: auto; /* Container for links */
+}
+.social-links a {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    margin-right: 15px;
+    transition: color 0.3s ease, transform 0.2s ease;
+    pointer-events: auto; /* Ensure links are interactive */
+}
+.social-links a:hover {
+    color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+
+/* Enhanced Contact Form */
+.contact-form {
+    flex: 2.5;
+    min-width: 300px;
+    background: #2c2f33; /* A more distinct dark gray */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15); /* Slightly more pronounced shadow */
+    border: 1px solid var(--primary-color);
+    color: var(--text-color);
+    opacity: 1; /* Ensure full opacity */
+    pointer-events: none; /* Allow mouse events to pass through to particle canvas */
+}
+
+.contact-form > * { /* Make direct children (form groups, button) interactive again */
+    pointer-events: auto;
+}
+
+.contact-form .form-group {
+    margin-bottom: 20px;
+    position: relative; /* For absolute positioning of icon */
+    pointer-events: auto; /* Ensure form groups allow interaction with inputs */
+}
+
+/* Styles for input icons */
+.input-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary-color);
+    font-size: 1rem;
+    z-index: 1; /* Above input background, below input text if possible */
+    pointer-events: none; /* Make icons non-interactive */
+}
+
+.textarea-icon { /* Specific styling for textarea icon */
+    top: 18px; /* Adjust for textarea alignment */
+    transform: translateY(0);
+    /* pointer-events: none; is inherited from .input-icon if it's a combined class, or set explicitly if separate */
+}
+
+
+.contact-form label {
+    margin-bottom: 10px;
+    display: block;
+    font-weight: 500;
+    pointer-events: auto; /* For clicking on labels */
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 15px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 5px;
+    background: var(--input-bg);
+    color: var(--text-color);
+    transition: border-color 0.3s ease;
+    pointer-events: auto; /* Ensure form fields are interactive */
+    width: 100%; /* Ensure inputs take full width of form-group */
+    padding-left: 45px; /* Make space for icon */
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(var(--primary-color-rgb), 0.4);
+}
+
+.submit-btn {
+    background: var(--primary-color);
+    color: var(--button-text-on-primary);
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    pointer-events: auto; /* Ensure button is interactive */
+}
+
+.submit-btn:hover {
+    background: var(--button-hover-bg);
+    color: var(--button-hover-text);
+    transform: translateY(-2px);
+}
+
+/* Responsive adjustments for contact page */
 @media (max-width: 768px) {
-    body { padding-top: 60px; }
-    .nav-container { height: 60px; }
+    .contact-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .contact-info, .contact-form {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
+    .contact-info {
+        order: 2; /* Move info below form on small screens */
+    }
+
+    .contact-form {
+        order: 1; /* Form first on small screens */
+    }
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .hero h1 { font-size: 3rem; }
+    .hero p { font-size: 1.5rem; }
+
+    nav {
+        flex-direction: column; /* Stack logo and nav-container */
+        height: auto; /* Allow height to adjust to content */
+        padding: 0; /* Reset padding for mobile, children will handle their own */
+    }
+
+    .nav-container {
+        width: 100%; /* Ensure it spans to allow nav-links to center within it */
+        /* padding: 0; /* Already reset on nav or not needed */
+    }
+
+    .logo {
+        /* position: static; transform: none; line-height: normal; */ /* These are default now */
+        padding: 15px 0;
+        text-align: center;
+        width: 100%; /* Make logo take full width to center text */
+        margin-bottom: 0px;
+    }
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+        padding-top: 10px;
+        /* margin-left: 0; /* Already default */
+    }
+    nav.scrolled .nav-links { background: var(--nav-bg-scrolled); padding-bottom: 15px; border-radius: 0 0 5px 5px;}
+    body.light-mode nav.scrolled .nav-links { background: var(--nav-bg-scrolled-light); }
+
+    main { padding-top: 100px; } /* Adjusted padding-top for potentially taller mobile nav */
+
+    .projects-grid { grid-template-columns: 1fr; gap: 20px; padding: 20px 10px; }
+    .project-card { padding: 20px; }
+    .project-card img { height: 180px; } /* Mniejsza wysokość obrazków na mobilnych urządzeniach */
+    .skills-grid { grid-template-columns: 1fr; gap: 15px; padding: 20px 10px; }
+    .skill-category { padding: 15px; }
+    .contact-form { margin: 20px auto; padding: 20px 15px; }
+    h2 { font-size: 2rem; }
+}
+
+@media (max-width: 480px) {
     .hero h1 { font-size: 2.5rem; }
-    #game-board { width: 90vw; height: 90vw; }
+    .hero p { font-size: 1.2rem; }
+    .nav-link { font-size: 0.9rem; }
+    .game-info { font-size: 1.2rem; }
+    .game-overlay h2 { font-size: 2rem; }
+    .game-overlay p { font-size: 1rem; }
+    .game-btn { padding: 10px 20px; font-size: 0.9rem; }
+
+    .contact-method {
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+    }
+
+    .contact-method i {
+        font-size: 1.3rem;
+        width: 30px;
+        margin-right: 10px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        padding: 12px 12px 12px 40px;
+    }
+
+    .submit-btn {
+        padding: 12px 25px;
+    }
+
+    /* Project Details Page Styling */
+    .project-details {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 40px 20px;
+    }
+
+    /* Project Title Container */
+    .project-title-container {
+        text-align: center;
+        margin-bottom: 40px;
+        position: relative;
+        padding: 10px 0 30px;
+    }
+
+    /* Game Title Styling */
+    .game-title {
+        font-size: 4.5rem;
+        font-weight: 800;
+        letter-spacing: -1px;
+        margin-bottom: 15px;
+        display: inline-block;
+        text-align: center;
+        position: relative;
+        color: white;
+        text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        font-family: 'Fira Code', monospace;
+        transition: transform 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    .game-title:hover {
+        transform: translateY(-5px) scale(1.02);
+        text-shadow: 0 8px 20px rgba(var(--primary-color-rgb), 0.5);
+    }
+
+    /* Accent part of the title */
+    .title-accent {
+        color: var(--primary-color);
+        position: relative;
+    }
+
+    /* Title decoration line */
+    .title-decoration {
+        height: 4px;
+        width: 120px;
+        background: linear-gradient(90deg, transparent, var(--primary-color), var(--secondary-color), transparent);
+        margin: 0 auto;
+        border-radius: 2px;
+    }
+
+    /* Regular project details heading */
+    .project-details h2 {
+        font-size: 3rem;
+        margin-bottom: 30px;
+        text-align: center;
+        color: var(--heading-color);
+        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .project-details img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        margin: 0 auto 40px auto;
+        display: block;
+    }
+
+    .project-details p {
+        text-align: center;
+        font-size: 1.2rem;
+        line-height: 1.8;
+        margin-bottom: 40px;
+        color: var(--text-color);
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .project-details h3 {
+        font-size: 2.2rem;
+        text-align: center;
+        margin: 50px 0 30px 0;
+        color: var(--primary-color);
+        position: relative;
+        padding-bottom: 15px;
+    }
+
+    .project-details h3::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+        border-radius: 2px;
+    }
+
+    /* Enhanced video container */
+    .project-details .video-container {
+        text-align: center;
+        margin: 40px 0;
+        position: relative;
+    }
+
+    .project-details video {
+        max-width: 100%;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 15px 40px rgba(var(--primary-color-rgb), 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project-details video:hover {
+        transform: scale(1.02);
+        box-shadow: 0 20px 50px rgba(var(--primary-color-rgb), 0.3);
+    }
+
+    /* Professional technologies section */
+    .project-details .tech-section {
+        margin: 50px 0;
+        text-align: center;
+    }
+
+    .project-details .tech-list {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin: 30px 0;
+        list-style: none;
+        padding: 0;
+    }
+
+    .project-details .tech-item {
+        background: var(--card-bg);
+        color: var(--text-color);
+        padding: 12px 24px;
+        border-radius: 25px;
+        border: 2px solid var(--primary-color);
+        font-weight: 600;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .project-details .tech-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+        transition: left 0.3s ease;
+        z-index: -1;
+    }
+
+    .project-details .tech-item:hover {
+        transform: translateY(-3px) scale(1.05);
+        color: var(--button-text-on-primary);
+        box-shadow: 0 8px 20px rgba(var(--primary-color-rgb), 0.4);
+    }
+
+    .project-details .tech-item:hover::before {
+        left: 0;
+    }
+
+    .project-details .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--primary-color);
+        color: var(--button-text-on-primary);
+        padding: 12px 25px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        margin: 40px auto 0 auto; /* Ta reguła już poprawnie centruje przycisk */
+        width: fit-content;
+    }
+
+    .project-details .back-button:hover {
+        background: var(--secondary-color);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(var(--primary-color-rgb), 0.3);
+    }
+
+    /* Light mode compatibility */
+    body.light-mode .game-title {
+        color: var(--heading-color-light);
+        text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    body.light-mode .project-details h2 {
+        color: var(--heading-color-light);
+    }
+
+    body.light-mode .project-details p {
+        color: var(--text-color-light);
+    }
+
+    body.light-mode .project-details .tech-item {
+        background: var(--card-bg-light);
+        color: var(--text-color-light);
+        border-color: var(--primary-color);
+    }
+
+    body.light-mode .project-details .tech-item:hover {
+        color: var(--button-text-on-primary-light);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .game-title {
+            font-size: 3.5rem;
+        }
+
+        .project-details h2 {
+            font-size: 2.5rem;
+        }
+
+        .project-details h3 {
+            font-size: 1.8rem;
+        }
+
+        .project-details .tech-list {
+            gap: 15px;
+        }
+
+        .project-details .tech-item {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+        }
+    }
+
+    /* Dodaj te style na końcu pliku CSS */
+
+    /* Enhanced Projects Grid for 12 projects */
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    /* Responsive adjustments for many projects */
+    @media (max-width: 1200px) {
+        .projects-grid {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .projects-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+    }
+
+    /* Optional: Add pagination or filtering if needed */
+    .project-filter {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin: 2rem 0;
+        flex-wrap: wrap;
+    }
+
+    .filter-btn {
+        background: transparent;
+        border: 1px solid var(--primary-color);
+        color: var(--primary-color);
+        padding: 0.5rem 1rem;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+        background: var(--primary-color);
+        color: var(--bg-color);
+    }
+
+    body.light-mode .section-description {
+        color: var(--text-color-light);
+    }
+
+    /* Dodaj te style na końcu pliku CSS */
+
+    /* Screenshots Gallery Styles */
+    .screenshots-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin: 30px 0;
+    }
+
+    .screenshot-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    .screenshot-item img {
+        width: 100%;
+        height: auto;
+        transition: transform 0.3s ease;
+    }
+
+    .screenshot-item:hover img {
+        transform: scale(1.05);
+    }
+
+    .screenshot-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, rgba(0,0,0,0.8));
+        color: white;
+        padding: 15px;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+    }
+
+    .screenshot-item:hover .screenshot-overlay {
+        transform: translateY(0);
+    }
+
+    /* Video Section Styles */
+    .video-section {
+        margin-bottom: 40px;
+    }
+
+    .video-section h4 {
+        text-align: center;
+        margin-bottom: 15px;
+        color: var(--primary-color);
+        font-size: 1.2rem;
+    }
+
+    .video-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .video-container video {
+        border-radius: 10px;
+        box-shadow: 0 4px 15px var(--shadow-color);
+    }
+
+    /* Light mode adjustments */
+    body.light-mode .screenshot-overlay {
+        background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    }
+
+    body.light-mode .video-container video {
+        box-shadow: 0 4px 15px var(--shadow-color-light);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .screenshots-gallery {
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .video-container video {
+            width: 95% !important;
+        }
+    }
 }

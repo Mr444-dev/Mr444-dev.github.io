@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Michal Rusinek</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Fira+Code:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> <!-- AOS CSS -->
+</head>
+<body>
+<div id="particles-js"></div>
+
+<nav data-aos="fade-down" data-aos-duration="1000">
+    <a href="../../index.html" class="logo">MR_</a>
+    <div class="nav-container">
+        <ul class="nav-links">
+            <li><a href="../../index.html" class="nav-link">Home</a></li>
+            <li><a href="projects.html" class="nav-link">Projects</a></li>
+            <li><a href="skills.html" class="nav-link">Skills</a></li>
+            <li><a href="contact.html" class="nav-link active">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<main>
+    <section id="contact" class="container" data-aos="fade-up" data-aos-duration="1000">
+        <h2>Contact Me</h2>
+        <p class="section-description" data-aos="fade-up" data-aos-delay="100">Have a question or a collaboration proposal? Fill out the form below, and I'll try to respond as soon as possible.</p>
+
+        <div class="contact-container">
+            <div class="contact-info" data-aos="fade-right" data-aos-delay="200">
+                <div class="contact-method">
+                    <i class="fas fa-envelope"></i>
+                    <p>michael.rusinek.contact@gmail.com</p>
+                </div>
+                <div class="contact-method">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Wroclaw, Poland</p>
+                </div>
+                <div class="contact-method">
+                    <i class="fas fa-gamepad"></i>
+                    <p>Available for game dev projects</p>
+                </div>
+                <div class="social-links">
+                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+
+            <form class="contact-form" data-aos="fade-left" data-aos-delay="300">
+                <div class="form-group">
+                    <div class="input-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <input type="email" id="email" name="_replyto" placeholder="Your Email Address" required>
+                </div>
+                <div class="form-group">
+                    <div class="input-icon">
+                        <i class="fas fa-tag"></i>
+                    </div>
+                    <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                </div>
+                <div class="form-group">
+                    <div class="input-icon textarea-icon">
+                        <i class="fas fa-comment"></i>
+                    </div>
+                    <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <span>Send Message</span>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </section>
+</main>
+
+<div id="thank-you-panel" class="thank-you-panel">
+    <div class="thank-you-content">
+        <div class="thank-you-icons">
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-gamepad"></i>
+        </div>
+        <h3>Thank You!</h3>
+        <p class="thank-you-message">Your message has been sent successfully.</p>
+        <button id="close-thank-you-panel" class="close-thank-you-btn">Close</button>
+    </div>
+</div>
+
+<button id="fixed-theme-toggle" class="fixed-theme-button" aria-label="Toggle theme" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-delay="500"></button>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> <!-- AOS JS -->
+<script src="../../particles.js"></script>
+<script src="../../app.js"></script>
+<script src="../../script.js"></script>
+</body>
+</html>
