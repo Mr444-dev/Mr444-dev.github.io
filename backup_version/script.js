@@ -20,13 +20,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Define particle colors for different themes
     const defaultParticleConfig = {
-        particleColor: '#ef233c', // Matches --primary-color from your CSS
-        lineColor: '#ef233c'      // Matches --primary-color
+        particleColor: '#03DAC6', // Corrected to match app.js initial primary color
+        lineColor: '#ffffff'      // Original line color for dark mode (matches app.js)
     };
 
     const lightModeParticleConfig = {
-        particleColor: '#d90429', // Darker red particle color for light mode
-        lineColor: '#ef233c'      // Crimson line color for light mode
+        particleColor: '#333333', // Darker particle color for light mode
+        lineColor: '#555555'      // Darker line color for light mode
     };
 
     function applyTheme(theme) {
@@ -285,7 +285,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- MODUŁ 3: EFEKT PISANIA NA MASZYNIE (działa tylko jeśli element .typing-effect jest na stronie) ---
     const typingElement = document.querySelector('.typing-effect');
     if (typingElement) {
-        const words = ["I am a Unity Developer", "I am an Indie Game Developer", "I love Optimization", "I am a C# Programmer"];
+        const words = ["Unity Developer", "Indie Game Developer", "Optimization Fan", "C# Programmer"];
         let wordIndex = 0, charIndex = 0, isDeleting = false;
         function type() {
             const currentWord = words[wordIndex];
@@ -607,137 +607,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- MODUŁ 8: AUTOMATYCZNE GENEROWANIE ZŁOCONYCH NAROŻNIKÓW (Supergiant Games Inspiration) ---
-    function injectGildedCorners() {
-        document.querySelectorAll('.gilded-frame').forEach(frame => {
-            if (!frame.querySelector('.gilded-corner')) {
-                const corners = ['tl', 'tr', 'bl', 'br'];
-                corners.forEach(pos => {
-                    const span = document.createElement('span');
-                    span.className = `gilded-corner ${pos}`;
-                    frame.appendChild(span);
-                });
-            }
-        });
-    }
-    injectGildedCorners();
-
     // --- MODUŁ 7: ANIMACJA ŁADOWANIA STRONY ---
     // Already handled by the initial script in the <head> section
-
-    // --- MODUŁ 9: EASTER EGG (SOUL HARVESTER) ---
-    const easterEggTrigger = document.getElementById('easter-egg-trigger');
-    const easterEggModal = document.getElementById('easter-egg-modal');
-    const closeGameBtn = document.getElementById('close-game-btn');
-
-    if (easterEggTrigger && easterEggModal) {
-        easterEggTrigger.addEventListener('click', () => {
-            easterEggModal.style.display = 'flex';
-        });
-        if (closeGameBtn) {
-            closeGameBtn.addEventListener('click', () => {
-                easterEggModal.style.display = 'none';
-            });
-        }
-
-        let souls = 0;
-        let clickDmg = 1;
-        let dps = 0;
-        let enemyMaxHp = 10;
-        let enemyHp = 10;
-        let enemyLevel = 1;
-        
-        const enemies = ['👹 Goblin', '💀 Skeleton', '🧟 Zombie', '🧛 Vampire', '🐉 Dragon'];
-
-        const soulsEl = document.getElementById('rpg-souls');
-        const dpsEl = document.getElementById('rpg-dps');
-        const enemyNameEl = document.getElementById('rpg-enemy-name');
-        const enemyHpEl = document.getElementById('rpg-enemy-hp');
-        const enemyMaxHpEl = document.getElementById('rpg-enemy-maxhp');
-        const enemyBtn = document.getElementById('rpg-enemy-container');
-        const buyDaggerBtn = document.getElementById('buy-dagger');
-        const buyMercBtn = document.getElementById('buy-merc');
-
-        function updateUI() {
-            if(!soulsEl) return;
-            soulsEl.innerText = Math.floor(souls);
-            dpsEl.innerText = dps;
-            enemyHpEl.innerText = Math.floor(enemyHp);
-            enemyMaxHpEl.innerText = enemyMaxHp;
-            if(buyDaggerBtn) {
-                buyDaggerBtn.disabled = souls < 10;
-                buyDaggerBtn.style.opacity = souls < 10 ? '0.5' : '1';
-                buyDaggerBtn.style.cursor = souls < 10 ? 'not-allowed' : 'pointer';
-            }
-            if(buyMercBtn) {
-                buyMercBtn.disabled = souls < 50;
-                buyMercBtn.style.opacity = souls < 50 ? '0.5' : '1';
-                buyMercBtn.style.cursor = souls < 50 ? 'not-allowed' : 'pointer';
-            }
-        }
-
-        function spawnEnemy() {
-            enemyLevel++;
-            enemyMaxHp = Math.floor(10 * Math.pow(1.5, enemyLevel - 1));
-            enemyHp = enemyMaxHp;
-            const enemyType = enemies[Math.min(enemyLevel - 1, enemies.length - 1)];
-            if(enemyNameEl) {
-                enemyNameEl.innerText = enemyType.split(' ')[1] + ' Lvl.' + enemyLevel;
-                enemyBtn.innerText = enemyType.split(' ')[0];
-            }
-        }
-
-        function damageEnemy(amount) {
-            enemyHp -= amount;
-            if (enemyHp <= 0) {
-                souls += Math.floor(enemyMaxHp / 2);
-                spawnEnemy();
-            }
-            updateUI();
-        }
-
-        if(enemyBtn) {
-            enemyBtn.addEventListener('mousedown', () => {
-                enemyBtn.style.transform = 'scale(0.9)';
-                enemyBtn.style.boxShadow = 'inset 0 0 15px rgba(230, 57, 70, 0.4)';
-                damageEnemy(clickDmg);
-            });
-            enemyBtn.addEventListener('mouseup', () => {
-                enemyBtn.style.transform = 'scale(1)';
-                enemyBtn.style.boxShadow = 'none';
-            });
-            enemyBtn.addEventListener('mouseleave', () => {
-                enemyBtn.style.transform = 'scale(1)';
-                enemyBtn.style.boxShadow = 'none';
-            });
-        }
-
-        if(buyDaggerBtn) {
-            buyDaggerBtn.addEventListener('click', () => {
-                if (souls >= 10) {
-                    souls -= 10;
-                    clickDmg += 1;
-                    updateUI();
-                }
-            });
-        }
-
-        if(buyMercBtn) {
-            buyMercBtn.addEventListener('click', () => {
-                if (souls >= 50) {
-                    souls -= 50;
-                    dps += 2;
-                    updateUI();
-                }
-            });
-        }
-
-        setInterval(() => {
-            if (dps > 0 && easterEggModal.style.display === 'flex') {
-                damageEnemy(dps / 10);
-            }
-        }, 100);
-        
-        updateUI();
-    }
 });

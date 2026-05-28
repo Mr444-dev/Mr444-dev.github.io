@@ -8,7 +8,7 @@ particlesJS('particles-js', {
       }
     },
     "color": {
-      "value": "#ef233c" // Matches --primary-color from your CSS
+      "value": "#03DAC6" // Matches --primary-color from your CSS
     },
     "shape": {
       "type": "circle",
